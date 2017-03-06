@@ -93,32 +93,13 @@ TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_DEFAULT_BRIGHTNESS := "160"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/soc/6a00000.ssusb/6a00000.dwc3/gadget/lun0/file
 TW_INCLUDE_CRYPTO := true
-TARGET_RECOVERY_DEVICE_MODULES := libbinder libgui libui libEGL libGLES_trace libGLESv2 libprotobuf-cpp-lite libsync
-TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/system/lib64/libbinder.so $(OUT)/system/lib64/libgui.so $(OUT)/system/lib64/libui.so $(OUT)/system/lib64/libEGL.so $(OUT)/system/lib64/libGLES_trace.so $(OUT)/system/lib64/libGLESv2.so $(OUT)/system/lib64/libprotobuf-cpp-lite.so $(OUT)/system/lib64/libsync.so
+TARGET_RECOVERY_DEVICE_MODULES := libbinder libgui libui libEGL libGLESv2 libprotobuf-cpp-lite libsync
+TW_RECOVERY_ADDITIONAL_RELINK_FILES := $(OUT)/system/lib64/libbinder.so $(OUT)/system/lib64/libgui.so $(OUT)/system/lib64/libui.so $(OUT)/system/lib64/libEGL.so $(OUT)/system/lib64/libGLESv2.so $(OUT)/system/lib64/libprotobuf-cpp-lite.so $(OUT)/system/lib64/libsync.so
 TW_NEW_ION_HEAP := true
 TW_EXTRA_LANGUAGES := true
 TW_INCLUDE_NTFS_3G := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 
-# MultiROM
-TARGET_RECOVERY_IS_MULTIROM := true
-MR_NO_KEXEC := 2
-MR_ALLOW_NKK71_NOKEXEC_WORKAROUND := true
-MR_CONTINUOUS_FB_UPDATE := true
-MR_DPI := xxhdpi
-MR_DPI_FONT := 340
-MR_USE_MROM_FSTAB := true
-MR_FSTAB := device/leeco/x2/multirom/mrom.fstab
-MR_INPUT_TYPE := type_b
-MR_INIT_DEVICES := device/leeco/x2/multirom/mr_init_devices.c
-MR_KEXEC_MEM_MIN := 0x00200000
-MR_KEXEC_DTB := true
-MR_DEVICE_HOOKS := device/leeco/x2/multirom/mr_hooks.c
-MR_DEVICE_HOOKS_VER := 4
-MR_DEVICE_VARIANTS := x2 le_x2 LeMax2_CN LeMax2_NA
-MR_USE_QCOM_OVERLAY := true
-MR_QCOM_OVERLAY_HEADER := device/leeco/x2/multirom/mr_qcom_overlay.h
-MR_QCOM_OVERLAY_CUSTOM_PIXEL_FORMAT := MDP_RGBX_8888
 # BootMenu
 DEVICE_RESOLUTION := 1440x2560
 MR_PIXEL_FORMAT := "RGBA_8888"
@@ -126,10 +107,3 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 MR_DEV_BLOCK_BOOTDEVICE := true
 MR_DEVICE_SPECIFIC_VERSION := b
 MR_POPULATE_BY_NAME_PATH := "/dev/block/platform/soc/624000.ufshc/by-name"
-
-# MultiRom Recovery Version
-include device/leeco/x2/MR_REC_VERSION.mk
-ifeq ($(MR_REC_VERSION),)
-MR_REC_VERSION := $(shell date -u +%Y%m%d)-01
-endif
-BOARD_MKBOOTIMG_ARGS += --board mrom$(MR_REC_VERSION)

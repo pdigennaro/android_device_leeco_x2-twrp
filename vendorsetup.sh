@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_x2-userdebug
+add_lunch_combo line_x2-eng
